@@ -21,16 +21,34 @@
             android:layout_height="match_parent"/>
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/text_board_write"
-        android:gravity="center"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:text="글쓰기"
-        android:textSize="24sp"
-        android:textColor="#000"
-        android:layout_marginVertical="24dp"/>
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/text_board_write"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:text="글쓰기"
+            android:textSize="24sp"
+            android:textColor="#000"
+            android:layout_marginVertical="24dp"/>
+        <TextView
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:id="@+id/text_board_join_manage"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:text="참가신청확인"
+            android:textSize="24sp"
+            android:textColor="#000"
+            android:layout_marginVertical="24dp"/>
+    </LinearLayout>
+
 
 
 </LinearLayout>

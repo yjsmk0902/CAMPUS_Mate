@@ -47,9 +47,6 @@ class MoimBoardListAdapter extends RecyclerView.Adapter<MoimBoardListAdapter.MyV
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(MoimBoardListAdapter.MyViewHolder holder, int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-        final int finalPosition = position;
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,7 +57,6 @@ class MoimBoardListAdapter extends RecyclerView.Adapter<MoimBoardListAdapter.MyV
         holder.contents.setText(mDataset.get(position).contents);
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return mDataset.size();

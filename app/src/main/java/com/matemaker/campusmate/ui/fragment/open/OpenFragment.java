@@ -18,27 +18,37 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.loader.content.CursorLoader;
 
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.matemaker.campusmate.R;
 import com.matemaker.campusmate.database.MoimDTO;
 import com.matemaker.campusmate.ui.activity.MainActivity;
+
+import java.io.File;
 
 
 public class OpenFragment extends Fragment {
 
     View root;
-    RadioGroup gg;
+    RadioGroup groupGender;
     Button create , image;
     long timestamp;
+
+    Intent data;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         root = inflater.inflate(R.layout.fragment_open, container, false);
-        gg = root.findViewById(R.id.category_group);
+        groupGender = root.findViewById(R.id.category_group);
         timestamp = System.currentTimeMillis();
         create = root.findViewById(R.id.button_open_create);
         image = root.findViewById(R.id.button_open_image);
@@ -50,11 +60,11 @@ public class OpenFragment extends Fragment {
                 final String subtitle = ((EditText)root.findViewById(R.id.edit_open_subtitle)).getText().toString();
                 final String age_max = ((EditText)root.findViewById(R.id.edit_open_age2)).getText().toString();
                 final String age_min = ((EditText)root.findViewById(R.id.edit_open_age)).getText().toString();
-                final String category = ((RadioButton)root.findViewById(gg.getCheckedRadioButtonId())).getText().toString();
+                final String category = ((RadioButton)root.findViewById(groupGender.getCheckedRadioButtonId())).getText().toString();
+
                 if (MainActivity.uid != null) {
                     MoimDTO moimDTO = new MoimDTO(MainActivity.uid, timestamp, title, subtitle, "", age_max, age_min, category);
                     createMoim(moimDTO);
-
                 }
                 getActivity().onBackPressed();
             }
@@ -84,27 +94,58 @@ public class OpenFragment extends Fragment {
     }
 
 
-    public void saveImage(){
+    public void uploadImage(final String uid, Uri uri){
         FirebaseStorage storage = FirebaseStorage.getInstance();
         // Create a storage reference from our app
         StorageReference storageRef = storage.getReference();
 
-// Create a reference to "mountains.jpg"
-        StorageReference mountainsRef = storageRef.child(MainActivity.uid+".jpg");
+        final StorageReference logoRef = storageRef.child("logos").child(uid).child(uri.getLastPathSegment());
 
-// Create a reference to 'images/mountains.jpg'
-        StorageReference mountainImagesRef = storageRef.child("images/mountains.jpg");
+        UploadTask uploadTask = logoRef.putFile(uri);
 
-// While the file names are the same, the references point to different files
-        mountainsRef.getName().equals(mountainImagesRef.getName());    // true
-        mountainsRef.getPath().equals(mountainImagesRef.getPath());    // false
+        Task<Uri> uriTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+            @Override
+            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                if(!task.isSuccessful()){
+                    throw task.getException();
+                }
+                return logoRef.getDownloadUrl();
+            }
+        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+            @Override
+            public void onComplete(@NonNull Task<Uri> task) {
+                if(task.isSuccessful()){
+                    Uri downloadUri = task.getResult();
+                    FirebaseDatabase.getInstance().getReference().child("moim").child(uid).child("image").setValue(downloadUri.getPath());
+                }else{
+
+                }
+            }
+        });
+    /*addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                System.out.println("업로드 실패 ");
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                System.out.println("업로드 성공 ");
+                String downloadUrl = logoRef.getDownloadUrl().toString();
+                FirebaseDatabase.getInstance().getReference().child("moim").child(uid).child("image").setValue(downloadUrl);
+            }
+        });*/
+
+
     }
 
     public void createMoim(MoimDTO moimDTO) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("moim");
-        ref.push().setValue(moimDTO.toMap());
+        String uid = ref.push().getKey();
+        ref.child(uid).setValue(moimDTO.toMap());
 
+        uploadImage(uid,data.getData());
     }
 
     @Override
@@ -112,7 +153,7 @@ public class OpenFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 10){
             if(data != null){
-                image.setText(getPath(data.getData()));
+                this.data = data;
             }
 
         }

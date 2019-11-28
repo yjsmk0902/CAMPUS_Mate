@@ -1,9 +1,14 @@
 package com.matemaker.campusmate.ui.fragment.home;
 
+import android.content.Intent;
+import android.media.Image;
+import android.net.Uri;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -11,15 +16,21 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.matemaker.campusmate.R;
 import com.matemaker.campusmate.database.MoimDTO;
 import com.matemaker.campusmate.database.UserDTO;
 import com.matemaker.campusmate.ui.activity.MainActivity;
+import com.matemaker.campusmate.ui.activity.moimboard.MoimBoardActivity;
 
 import java.util.ArrayList;
 
@@ -27,24 +38,23 @@ import java.util.ArrayList;
 class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.MyViewHolder> {
     ArrayList<MoimDTO> mDataset;
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
         public View view;
         public TextView title;
         public Button join;
+        public ImageView imageView;
         public MyViewHolder(View v) {
             super(v);
             title = v.findViewById(R.id.text_image_item);
             join = v.findViewById(R.id.button_moim_join);
+            imageView = v.findViewById(R.id.image_list_item);
             view = v;
         }
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
     public HomeListAdapter(ArrayList<MoimDTO> myDataset) {
         mDataset = myDataset;
     }
 
-    // Create new views (invoked by the layout manager)
     @Override
     public HomeListAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                            int viewType) {
@@ -56,27 +66,47 @@ class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.MyViewHolder>
         return vh;
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(MyViewHolder holder, final int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-        final int finalPosition = position;
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
+
+
+        if(!mDataset.get(position).image.isEmpty()) {
+            final StorageReference ref = FirebaseStorage.getInstance()
+                    .getReferenceFromUrl("https://firebasestorage.googleapis.com" + mDataset.get(position).image);
+            ref.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    Glide.with(holder.view.getContext())
+                            .load(task.getResult())
+                            .into(holder.imageView);
+                }
+            });
+        }
+
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(v.getContext(), MoimBoardActivity.class);
+                if(MainActivity.uid == null){
+                    Toast.makeText(v.getContext(), "아이디를 먼저 생성 해 주세요!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Intent intent = new Intent(v.getContext(), MoimBoardActivity.class);
                 intent.putExtra("title",mDataset.get(position).title);
                 intent.putExtra("uid",mDataset.get(position).uid);
                 intent.putExtra("subtitle",mDataset.get(position).subtitle);
                 intent.putExtra("number",mDataset.get(position).number);
-                v.getContext().startActivity(intent);*/
+                v.getContext().startActivity(intent);
             }
         });
 
         holder.join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(MainActivity.uid == null){
+                    Toast.makeText(v.getContext(), "아이디를 먼저 생성 해 주세요!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if(MainActivity.uid.equals(mDataset.get(position).uid)){
 
                     getWaitList(position);

@@ -26,7 +26,7 @@ public class SplashActivity extends AppCompatActivity {
                 //뒤로가기 했을 때 다시 안나오게 >>finish!!
                 finish();
             }
-        }, 3000);
+        }, 2000);
 
     }
 }
