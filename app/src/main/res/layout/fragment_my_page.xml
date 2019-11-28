@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/text_mypage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/textView_title1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:gravity="center"
+            android:text="내 정보"
+            android:layout_marginLeft="12dp"
+            android:layout_marginBottom="12dp"
+            android:textColor="#000000"
+            android:textSize="24dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            >
+
+            <TextView
+                android:id="@+id/textView_Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이름"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+            <TextView
+                android:id="@+id/textView_showName"
+                android:layout_width="145dp"
+                android:layout_height="40dp"
+                android:inputType="textPersonName"
+                android:text="Name1" />
+
+
+            <TextView
+                android:id="@+id/textView_StudentID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:text="학번"
+                />
+
+            <TextView
+                android:id="@+id/textView_showStudentID"
+                android:layout_width="145dp"
+                android:layout_height="40dp"
+                android:inputType="textPersonName"
+                android:text="학번" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/textView_dept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:text="학과"
+                />
+
+            <TextView
+                android:id="@+id/textView_showDept"
+                android:layout_width="145dp"
+                android:layout_height="40dp"
+                android:inputType="textPersonName"
+                android:text="학과"
+                />
+
+            <TextView
+                android:id="@+id/textView_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:text="나이" />
+
+            <TextView
+                android:id="@+id/textView_showAge"
+                android:layout_width="145dp"
+                android:layout_height="40dp"
+                android:inputType="textPersonName" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/textView_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:text="성별"
+                />
+
+            <TextView
+                android:id="@+id/textView_showGender"
+                android:layout_width="145dp"
+                android:layout_height="40dp"
+                android:inputType="textPersonName"
+                android:text="학과"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView_title2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:gravity="center"
+            android:paddingTop="12dp"
+            android:layout_marginLeft="12dp"
+            android:paddingBottom="12dp"
+            android:text="즐겨찾는 테마"
+            android:textColor="#000000"
+            android:textSize="24dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <CheckBox
+                android:id="@+id/group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="동아리"
+                android:paddingRight="15dp"
+                app:layout_constraintEnd_toStartOf="@+id/checkBox2" />
+
+            <CheckBox
+                android:id="@+id/exercise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="15dp"
+                android:text="운동" />
+
+            <CheckBox
+                android:id="@+id/sudden_meeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="15dp"
+                android:text="번개" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <CheckBox
+                android:id="@+id/study"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="스터디"
+                android:paddingRight="15dp" />
+
+            <CheckBox
+                android:id="@+id/hobby"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="15dp"
+                android:text="취미" />
+
+        </LinearLayout>
+
+        <RadioButton
+            android:id="@+id/push"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PUSH 알림을 동의합니다"
+            android:paddingRight="15dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/textView_title3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:gravity="center"
+            android:paddingTop="12dp"
+            android:layout_marginLeft="12dp"
+            android:paddingBottom="12dp"
+            android:text="내가 가입한 모임"
+            android:textColor="#000000"
+            android:textSize="24dp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#DCDCDC">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text=""
+                android:textColor="#000000"
+                android:textSize="10pt" />
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="모임 이름"
+                android:textColor="#000000"
+                android:textSize="10pt" />
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="카테고리"
+                android:textColor="#000000"
+                android:textSize="10pt" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="#000000"
+                android:textSize="10pt" />
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="text"
+                android:textColor="#000000"
+                android:textSize="10pt" />
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="text"
+                android:textColor="#000000"
+                android:textSize="10pt" />
+        </TableRow>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

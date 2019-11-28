@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.matemaker.campusmate.ui.fragment.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_open"
+        android:name="com.matemaker.campusmate.ui.fragment.open.OpenFragment"
+        android:label="@string/menu_open"
+        tools:layout="@layout/fragment_open" />
+
+    <fragment
+        android:id="@+id/nav_manage"
+        android:name="com.matemaker.campusmate.ui.fragment.manage.ManageFragment"
+        android:label="@string/menu_manage"
+        tools:layout="@layout/fragment_manage" />
+
+    <fragment
+        android:id="@+id/nav_category"
+        android:name="com.matemaker.campusmate.ui.fragment.CategoryFragment"
+        android:label="@string/menu_category"
+        tools:layout="@layout/fragment_category" />
+
+    <fragment
+        android:id="@+id/nav_out"
+        android:name="com.matemaker.campusmate.ui.fragment.out.OutFragment"
+        android:label="@string/menu_out"
+        tools:layout="@layout/fragment_out" />
+
+    <fragment
+        android:id="@+id/nav_mypage"
+        android:name="com.matemaker.campusmate.ui.fragment.MyPageFragment"
+        android:label="@string/menu_mypage"
+        tools:layout="@layout/fragment_my_page" />
+</navigation>

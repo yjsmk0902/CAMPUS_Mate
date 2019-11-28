@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "188089504884",
+    "firebase_url": "https://campus-mate-remaster.firebaseio.com",
+    "project_id": "campus-mate-remaster",
+    "storage_bucket": "campus-mate-remaster.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:188089504884:android:31624b5f39ac4fd4e32d21",
+        "android_client_info": {
+          "package_name": "com.matemaker.campusmate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "188089504884-840hli07dp3u23g71fro7aiv8b6rnd4g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.matemaker.campusmate",
+            "certificate_hash": "155c75cef1596b952fca6b10c82fd5e6e39621cd"
+          }
+        },
+        {
+          "client_id": "188089504884-4oidl3fsq8ajiuqlbjcclv6lpcoccpis.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYdsY5PeUTIRWdKe3nnA_NrBBnoEflTsM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "188089504884-4oidl3fsq8ajiuqlbjcclv6lpcoccpis.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

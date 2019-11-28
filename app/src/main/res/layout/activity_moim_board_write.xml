@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.moimboard.MoimBoardWriteActivity"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/text_board_user"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:textSize="16dp"/>
+    <EditText
+        android:id="@+id/edit_board_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="제목"/>
+    <EditText
+        android:id="@+id/edit_board_contents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="내용"/>
+    <Button
+        android:id="@+id/btn_board_write"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="전송"/>
+
+</LinearLayout>

@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">CampusMate</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">홈</string>
+    <string name="menu_open">모임 개설</string>
+    <string name="menu_manage">모임 관리</string>
+    <string name="menu_category">카테 고리</string>
+    <string name="menu_out">외부 일정</string>
+    <string name="menu_mypage">마이페이지</string>
+    <string name="login">로그인</string>
+
+    <!-- Ted Permission -->
+    <string name="permission_1">[설정] > [권한] 에서 권한을 허용할 수 있습니다.</string>
+    <string name="permission_2">사진 및 파일을 저장하기 위하여 접근 권한이 필요합니다.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
