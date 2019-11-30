@@ -6,27 +6,80 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.moimboard.MoimBoardWriteActivity"
     android:orientation="vertical">
-    <TextView
-        android:id="@+id/text_board_user"
-        android:gravity="center"
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/text_board_user"
+            android:layout_width="360dp"
+            android:layout_height="48dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="글쓰기"
+            android:textColor="#ffffff"
+            android:textSize="16dp" />
+
+        <Button
+            android:id="@+id/btn_board_write"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:text="전송"
+            android:textSize="16dp"
+            android:textColor="#ffffff" />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#000"
-        android:textSize="16dp"/>
-    <EditText
-        android:id="@+id/edit_board_title"
+        android:gravity="center_horizontal">
+
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="47dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="제목"
+            android:textColor="#000"
+            android:textSize="16dp" />
+
+        <EditText
+            android:id="@+id/edit_board_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="제목" />
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="제목"/>
-    <EditText
-        android:id="@+id/edit_board_contents"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="내용"/>
-    <Button
-        android:id="@+id/btn_board_write"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="전송"/>
+        android:layout_height="match_parent"
+        android:gravity="fill_horizontal">
+
+        <TextView
+            android:id="@+id/content_text"
+            android:layout_width="47dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="내용"
+            android:textColor="#000"
+            android:textSize="16dp" />
+
+        <EditText
+            android:id="@+id/edit_board_contents"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="내용"
+            android:gravity="top"/>
+
+    </LinearLayout>
+
+
 
 </LinearLayout>

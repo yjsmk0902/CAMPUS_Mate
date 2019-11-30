@@ -6,25 +6,15 @@
     android:orientation="horizontal"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="160dp"
-        android:text="MATE"
-        android:textColor="#2da5dc"
-        android:textSize="30sp"
-        android:layout_below="@+id/textView"/>
-
 
     <ImageView
         android:id="@+id/imgaeView2"
         android:layout_width="200dp"
         android:layout_height="122dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginLeft="105dp"
         android:layout_gravity="center"
+        android:layout_marginLeft="105dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginRight="100dp"
         android:src="@drawable/splash"
         tools:ignore="MissingConstraints" />
 
@@ -32,10 +22,23 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="400dp"
+        android:layout_below="@+id/imgaeView2"
         android:layout_marginLeft="145dp"
+        android:layout_marginTop="45dp"
         android:text="CAMPUS"
         android:textColor="#2da5dc"
+        android:textSize="30sp"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_marginLeft="165dp"
+        android:layout_marginTop="1dp"
+        android:text="MATE"
+        android:textColor="#2da5dc"
         android:textSize="30sp" />
+
 
 </RelativeLayout>

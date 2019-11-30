@@ -1,20 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:background="#FFFEFF"
+    android:gravity="center"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="47dp"
+            android:layout_height="55dp"
+            android:src="@drawable/icon2">
+
+        </ImageView>
+
+        <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="JOIN"
-        android:textSize="40sp" />
+        android:text="회원가입"
+        android:textSize="20sp" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/edit_join_email"
@@ -22,22 +35,21 @@
         android:layout_height="wrap_content"
 
         android:layout_marginTop="30dp"
+        android:background="#ffffff"
+        android:elevation="3dp"
         android:ems="10"
         android:hint="이메일@naver.com"
-        android:elevation="3dp"
-        android:background="#FFFEFF"
-        android:inputType="textEmailAddress"
-        />
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/edit_join_pw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="6dp"
-        android:background="@null"
+        android:background="#ffffff"
+        android:elevation="3dp"
         android:ems="10"
         android:hint="비밀번호"
-        android:elevation="3dp"
         android:inputType="textPassword" />
 
     <EditText
@@ -45,10 +57,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="6dp"
-        android:background="@null"
+        android:background="#ffffff"
+        android:elevation="3dp"
         android:ems="10"
         android:hint="비밀번호 확인"
-        android:elevation="3dp"
         android:inputType="textPassword" />
 
     <EditText
@@ -56,40 +68,53 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="6dp"
-        android:background="@null"
+        android:background="#ffffff"
+        android:elevation="3dp"
         android:ems="10"
         android:hint="학번"
-        android:elevation="3dp"
         android:inputType="number" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal">
+
         <EditText
             android:id="@+id/edit_join_name"
             android:layout_width="100dp"
-            android:layout_height="44dp"
-            android:layout_marginVertical="6dp"
+            android:layout_height="30dp"
             android:layout_marginHorizontal="3dp"
-            android:background="@null"
+            android:layout_marginVertical="6dp"
+            android:background="#ffffff"
+            android:elevation="3dp"
             android:ems="10"
             android:hint="이름"
-            android:elevation="3dp"
             android:inputType="text" />
+
         <EditText
             android:id="@+id/edit_join_age"
             android:layout_width="100dp"
-            android:layout_height="44dp"
+            android:layout_height="30dp"
             android:layout_marginHorizontal="3dp"
             android:layout_marginVertical="6dp"
-            android:background="@null"
+            android:background="#ffffff"
+            android:elevation="3dp"
             android:ems="10"
             android:hint="나이"
-            android:elevation="3dp"
             android:inputType="number" />
     </LinearLayout>
 
+    <EditText
+        android:id="@+id/edit_join_subject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="6dp"
+        android:background="#ffffff"
+        android:elevation="3dp"
+        android:ems="10"
+        android:hint="학과"
+        android:inputType="textPersonName" />
 
 
     <RadioGroup
@@ -110,16 +135,6 @@
             android:layout_height="wrap_content"
             android:text="여" />
     </RadioGroup>
-    <EditText
-        android:id="@+id/edit_join_subject"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="6dp"
-        android:background="@null"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="학과"
-        android:elevation="3dp"/>
 
     <Button
         android:id="@+id/button_join_create"
@@ -127,6 +142,11 @@
         android:layout_height="wrap_content"
         android:onClick="createUser"
         android:text="회원가입"
-        android:elevation="3dp"/>
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_join_pw" />
+
 
 </LinearLayout>
