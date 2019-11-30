@@ -32,7 +32,14 @@ public class HomeFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private HomeListAdapter mAdapter;
 
+    private Button club;
+    private Button study;
+    private Button sports;
+    private Button hobby;
+    private Button light;
+    private Button all;
     private Button buttonSearch;
+    private String category = null;
     private EditText editSearch;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -40,7 +47,12 @@ public class HomeFragment extends Fragment {
         root = inflater.inflate(R.layout.fragment_home, container, false);
         //final TextView textView = root.findViewById(R.id.text_home);
         //textView.setText("모임피드");
-
+        club = root.findViewById(R.id.club);
+        study = root.findViewById(R.id.study);
+        sports = root.findViewById(R.id.sports);
+        hobby = root.findViewById(R.id.hobby);
+        light = root.findViewById(R.id.light);
+        all = root.findViewById(R.id.all);
         initList();
         return root;
     }
@@ -70,8 +82,48 @@ public class HomeFragment extends Fragment {
                 getData(editSearch.getText().toString());
             }
         });
-
-
+        club.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = "동아리";
+                getData();
+            }
+        });
+        hobby.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = "취미";
+                getData();
+            }
+        });
+        light.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = "번개";
+                getData();
+            }
+        });
+        study.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = "스터디";
+                getData();
+            }
+        });
+        sports.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = "운동";
+                getData();
+            }
+        });
+        all.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = null;
+                getData();
+            }
+        });
     }
 
     @Override
@@ -114,11 +166,22 @@ public class HomeFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ArrayList<MoimDTO> moimDTOs = new ArrayList<>();
-                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
-                    String key = postSnapshot.getKey();
-                    MoimDTO moimDTO = postSnapshot.getValue(MoimDTO.class);
-                    moimDTO.number = key;
-                    moimDTOs.add(moimDTO);
+                if(category == null){
+                    for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                        String key = postSnapshot.getKey();
+                        MoimDTO moimDTO = postSnapshot.getValue(MoimDTO.class);
+                        moimDTO.number = key;
+                        moimDTOs.add(moimDTO);
+                    }
+                }else{
+                    for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                        if(category.equals(postSnapshot.getValue(MoimDTO.class).category)){
+                            String key = postSnapshot.getKey();
+                            MoimDTO moimDTO = postSnapshot.getValue(MoimDTO.class);
+                            moimDTO.number = key;
+                            moimDTOs.add(moimDTO);
+                        }
+                    }
                 }
                 mAdapter = new HomeListAdapter(moimDTOs);
                 recyclerView.setAdapter(mAdapter);

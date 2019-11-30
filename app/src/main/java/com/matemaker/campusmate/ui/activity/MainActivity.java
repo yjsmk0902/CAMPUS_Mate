@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
         mAppBarConfiguration =new AppBarConfiguration.Builder(
                 R.id.nav_home,R.id.nav_open,R.id.nav_manage,
-                R.id.nav_category,R.id.nav_out,R.id.nav_mypage)
+                R.id.nav_out,R.id.nav_mypage)
                 .setDrawerLayout(drawer)
                 .build();
 
