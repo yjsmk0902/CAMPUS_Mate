@@ -1,5 +1,6 @@
 package com.matemaker.campusmate.ui.activity.moimboard;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -56,6 +57,8 @@ public class MoimBoardActivity extends AppCompatActivity {
             });
         }
         textInfo.setText(str);
+        checkMember();
+
         textWrite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +83,31 @@ public class MoimBoardActivity extends AppCompatActivity {
 
         // specify an adapter (see also next example)
         getData();
+    }
+
+    public void checkMember(){
+        FirebaseDatabase.getInstance().getReference()
+                .child("moim").child(getIntent().getStringExtra("number"))
+                .child("member").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                boolean isMember = false;
+                for(DataSnapshot data : dataSnapshot.getChildren()){
+                    if(data.getKey().equals(MainActivity.uid)){
+                        isMember = true;
+                    }
+                }
+                if(isMember){
+                    textWrite.setVisibility(View.VISIBLE);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void getData(){

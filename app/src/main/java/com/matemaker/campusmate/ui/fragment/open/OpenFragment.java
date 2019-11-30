@@ -144,8 +144,12 @@ public class OpenFragment extends Fragment {
         DatabaseReference ref = database.getReference("moim");
         String uid = ref.push().getKey();
         ref.child(uid).setValue(moimDTO.toMap());
+        ref.child(uid).child("member").child(MainActivity.uid).setValue("관리자");
 
-        uploadImage(uid,data.getData());
+        if(data.getData()!=null){
+            uploadImage(uid,data.getData());
+        }
+
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.matemaker.campusmate.ui.fragment;
+package com.matemaker.campusmate.ui.fragment.mypage;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -58,7 +58,6 @@ public class MyPageFragment extends Fragment {
                 gender.setText(user.gender);
                 stuNum.setText(user.stu_num);
                 subject.setText(user.subject);
-
             }
 
             @Override

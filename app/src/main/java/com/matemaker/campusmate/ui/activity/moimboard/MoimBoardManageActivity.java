@@ -37,7 +37,6 @@ public class MoimBoardManageActivity extends AppCompatActivity {
                 .child(number)
                 .child("wait");
 
-
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

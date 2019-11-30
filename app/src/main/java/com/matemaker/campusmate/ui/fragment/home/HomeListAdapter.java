@@ -129,6 +129,7 @@ class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.MyViewHolder>
     public void applyMoim(final int position){
         String uid = MainActivity.uid;
         if(uid == null){
+            return;
             //login error
         }
 
@@ -138,9 +139,7 @@ class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.MyViewHolder>
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String user = dataSnapshot.getKey();
                 FirebaseDatabase.getInstance()
-                        .getReference("moim")
-                        .child(mDataset.get(position).number)
-                        .child("wait")
+                        .getReference("moim").child(mDataset.get(position).number).child("wait")
                         .child(user)
                         .setValue(user);
             }
@@ -151,37 +150,5 @@ class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.MyViewHolder>
             }
         };
         userRef.addValueEventListener(postListener);
-    }
-
-    public void getWaitList(final int position){
-        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("moim").child(mDataset.get(position).number).child("wait");
-        ValueEventListener postListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot data : dataSnapshot.getChildren()){
-                    if(data.getKey() == null) return;
-                    DatabaseReference userRef = ref.child("user").child(data.getKey());
-                    ValueEventListener postListener = new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            UserDTO user = dataSnapshot.getValue(UserDTO.class);
-                            System.out.println(user.name);
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    };
-                    userRef.addValueEventListener(postListener);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        };
-        ref.addValueEventListener(postListener);
     }
 }
