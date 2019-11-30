@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 public class MoimBoardManagerListAdapter extends RecyclerView.Adapter<MoimBoardManagerListAdapter.MyViewHolder>{
     ArrayList<String> mDataset;
+    MoimBoardManageActivity mActivity;
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public View view;
@@ -35,8 +36,10 @@ public class MoimBoardManagerListAdapter extends RecyclerView.Adapter<MoimBoardM
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MoimBoardManagerListAdapter(ArrayList<String> myDataset) {
+    public MoimBoardManagerListAdapter(MoimBoardManageActivity activity, ArrayList<String> myDataset) {
+        mActivity = activity;
         mDataset = myDataset;
+
     }
 
     // Create new views (invoked by the layout manager)
@@ -52,12 +55,12 @@ public class MoimBoardManagerListAdapter extends RecyclerView.Adapter<MoimBoardM
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(final MoimBoardManagerListAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MoimBoardManagerListAdapter.MyViewHolder holder, final int position) {
         FirebaseDatabase.getInstance().getReference("user").child(mDataset.get(position)).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 UserDTO user = dataSnapshot.getValue(UserDTO.class);
-                setUIWithUser(holder,user);
+                setUIWithUser(holder,user,position);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -67,9 +70,25 @@ public class MoimBoardManagerListAdapter extends RecyclerView.Adapter<MoimBoardM
 
     }
 
-    void setUIWithUser(final MoimBoardManagerListAdapter.MyViewHolder holder, UserDTO user){
+    void setUIWithUser(final MoimBoardManagerListAdapter.MyViewHolder holder, UserDTO user, final int position){
         //TODO 승인 과정에서 쓸 유저의 정보 여기서 ui 설정 해주면 됨
         holder.name.setText(user.name);
+        holder.ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseDatabase.getInstance().getReference("moim")
+                        .child(mActivity.number).child("member").child(mDataset.get(position)).setValue("일반회원");
+                FirebaseDatabase.getInstance().getReference("moim")
+                        .child(mActivity.number).child("wait").child(mDataset.get(position)).removeValue();
+            }
+        });
+        holder.cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseDatabase.getInstance().getReference("moim")
+                        .child(mActivity.number).child("wait").child(mDataset.get(position)).removeValue();
+            }
+        });
     }
 
     @Override

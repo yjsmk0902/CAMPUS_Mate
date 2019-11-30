@@ -108,8 +108,7 @@ class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.MyViewHolder>
                     return;
                 }
                 if(MainActivity.uid.equals(mDataset.get(position).uid)){
-
-                    getWaitList(position);
+                    //getWaitList(position);
 
                     Toast.makeText(v.getContext(), "this is Manager", Toast.LENGTH_SHORT).show();
                     return;

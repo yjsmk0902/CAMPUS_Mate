@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,11 +32,14 @@ public class HomeFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private HomeListAdapter mAdapter;
 
+    private Button buttonSearch;
+    private EditText editSearch;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        textView.setText("모임피드");
+        //final TextView textView = root.findViewById(R.id.text_home);
+        //textView.setText("모임피드");
 
         initList();
         return root;
@@ -43,6 +48,8 @@ public class HomeFragment extends Fragment {
     public void initList(){
 
         recyclerView = root.findViewById(R.id.home_recycler);
+        buttonSearch = root.findViewById(R.id.button_home_search);
+        editSearch = root.findViewById(R.id.edit_home_search);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -56,6 +63,15 @@ public class HomeFragment extends Fragment {
         // specify an adapter (see also next example)
 
         getData();
+
+        buttonSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getData(editSearch.getText().toString());
+            }
+        });
+
+
     }
 
     @Override
@@ -64,6 +80,32 @@ public class HomeFragment extends Fragment {
         if(mAdapter!=null){
             mAdapter.notifyDataSetChanged();
         }
+    }
+
+    public void getData(final String str){
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("moim");
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<MoimDTO> moimDTOs = new ArrayList<>();
+                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                    String key = postSnapshot.getKey();
+                    MoimDTO moimDTO = postSnapshot.getValue(MoimDTO.class);
+                    moimDTO.number = key;
+                    if(moimDTO.title.contains(str)){
+                        moimDTOs.add(moimDTO);
+                    }
+                }
+                mAdapter = new HomeListAdapter(moimDTOs);
+                recyclerView.setAdapter(mAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        databaseReference.addValueEventListener(postListener);
     }
 
     public void getData(){

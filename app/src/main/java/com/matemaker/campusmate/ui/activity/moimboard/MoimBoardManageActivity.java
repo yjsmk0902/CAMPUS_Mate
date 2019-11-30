@@ -22,19 +22,22 @@ public class MoimBoardManageActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private MoimBoardManagerListAdapter mAdapter;
 
+    public String number ="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_moim_board_manage);
-        getWaitList();
+        number = getIntent().getStringExtra("number");
+        if(!number.isEmpty())
+            getWaitList();
     }
 
     public void getWaitList(){
         final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("moim")
-                .child(getIntent().getStringExtra("number"))
+                .child(number)
                 .child("wait");
 
-        System.out.println(getIntent().getStringExtra("number"));
+
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -53,7 +56,7 @@ public class MoimBoardManageActivity extends AppCompatActivity {
                 layoutManager = new LinearLayoutManager(getApplicationContext());
                 recyclerView.setLayoutManager(layoutManager);
 
-                mAdapter = new MoimBoardManagerListAdapter(data);
+                mAdapter = new MoimBoardManagerListAdapter(MoimBoardManageActivity.this,data);
 
                 recyclerView.setAdapter(mAdapter);
             }
