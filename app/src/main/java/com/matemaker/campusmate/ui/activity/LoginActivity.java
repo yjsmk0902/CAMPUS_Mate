@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -80,6 +81,8 @@ public class LoginActivity extends AppCompatActivity {
                     intent.putExtra("email",user.getEmail());
 
                     startActivity(intent);
+                }else{
+                    Toast.makeText(getApplicationContext(), "아이디, 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();
                 }
             }
         });

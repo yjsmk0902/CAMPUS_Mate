@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     public static String uid = null;
     public static String name = null;
     public static String email = null;
-
     private AppBarConfiguration mAppBarConfiguration;
 
     NavigationView navigationView;
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                     if(dataSnapshot.exists()){
                         UserDTO userDTO = dataSnapshot.getValue(UserDTO.class);
                         Log.d("MainActivity", userDTO.name);
-
+                        name = dataSnapshot.getValue(UserDTO.class).name;
                         //로그인 후 UI 작업은 아래 함수에서 진행하도록 하자.
                         updateUI(userDTO);
                     }
@@ -96,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         TextView textResultLogin = hView.findViewById(R.id.login_text);
         buttonLogin.setVisibility(View.GONE);
         textResultLogin.setVisibility(View.VISIBLE);
-        textResultLogin.setText(email);
+        textResultLogin.setText(name);
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this,navController,mAppBarConfiguration);

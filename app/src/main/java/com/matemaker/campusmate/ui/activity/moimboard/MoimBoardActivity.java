@@ -27,23 +27,16 @@ public class MoimBoardActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private MoimBoardListAdapter mAdapter;
 
-    private TextView textWrite, textInfo, textJoinManage;
+    private TextView textWrite, textTitle, textSubtitle, textJoinManage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_moim_board);
         textWrite = findViewById(R.id.text_board_write);
-        textInfo = findViewById(R.id.text_board_info);
+        textTitle = findViewById(R.id.text_board_title);
+        textSubtitle = findViewById(R.id.text_board_subtitle);
         textJoinManage = findViewById(R.id.text_board_join_manage);
-
-        //임시
-        String str = "";
-        str += "title: " + getIntent().getStringExtra("title") + "\n";
-        str += "관리자: " + getIntent().getStringExtra("uid") + "\n";
-        str += "subtitle: " + getIntent().getStringExtra("subtitle") + "\n";
-        str += "number: " + getIntent().getStringExtra("number") + "\n";
-
 
         if(MainActivity.uid.equals(getIntent().getStringExtra("uid"))){
             textJoinManage.setVisibility(View.VISIBLE);
@@ -56,7 +49,8 @@ public class MoimBoardActivity extends AppCompatActivity {
                 }
             });
         }
-        textInfo.setText(str);
+        textTitle.setText(getIntent().getStringExtra("title"));
+        textSubtitle.setText(getIntent().getStringExtra("subtitle"));
         checkMember();
 
         textWrite.setOnClickListener(new View.OnClickListener() {

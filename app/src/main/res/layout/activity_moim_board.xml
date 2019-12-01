@@ -6,10 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.moimboard.MoimBoardActivity"
     android:orientation="vertical">
+
     <TextView
-        android:id="@+id/text_board_info"
+        android:id="@+id/text_board_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textSize="50sp"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/text_board_subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="20sp"
+        android:gravity="center"/>
 
     <FrameLayout
         android:layout_weight="1"
