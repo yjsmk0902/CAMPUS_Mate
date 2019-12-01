@@ -18,28 +18,31 @@
         android:background="@null"
         android:src="@null"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.985"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <Button
         android:id="@+id/button_moim_join"
-        android:layout_width="61dp"
+        android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginRight="80dp"
-        android:layout_marginBottom="120dp"
-        android:text="JOIN"
+        android:layout_marginStart="55dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="84dp"
+        android:background="@drawable/join"
         app:layout_constraintBottom_toBottomOf="@+id/image_list_item"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.304"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/text_image_item"
-        android:layout_width="193dp"
+        android:layout_width="150dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="96dp"
+        android:layout_marginBottom="88dp"
         android:gravity="center"
         android:text="안녕하세요"
         android:textColor="#000000"

@@ -11,6 +11,7 @@
         android:background="#FFFEFF"
         android:elevation="3dp"
         android:orientation="horizontal">
+
         <EditText
             android:layout_marginVertical="6dp"
             android:layout_marginLeft="12dp"
@@ -22,11 +23,12 @@
             android:textAlignment="center"
             android:background="@null"
             android:textSize="20sp"/>
+
         <Button
             android:id="@+id/button_home_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="검색"/>
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/search" />
 
     </LinearLayout>
 
@@ -43,7 +45,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50sp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <Button
@@ -51,42 +53,54 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="동아리" />
+            android:background="#2da5dc"
+            android:text="동아리"
+            android:textColor="#ffffff"/>
 
         <Button
             android:id="@+id/study"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="스터디" />
+            android:background="#E62da5dc"
+            android:text="스터디"
+            android:textColor="#ffffff"/>
 
         <Button
             android:id="@+id/sports"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="운동" />
+            android:background="#B52da5dc"
+            android:text="운동"
+            android:textColor="#ffffff"/>
 
         <Button
             android:id="@+id/hobby"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="취미" />
+            android:background="#B52da5dc"
+            android:text="취미"
+            android:textColor="#ffffff"/>
 
         <Button
             android:id="@+id/light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="취미" />
+            android:background="#992da5dc"
+            android:text="번개"
+            android:textColor="#ffffff"/>
 
         <Button
             android:id="@+id/all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="모두" />
+            android:background="#802da5dc"
+            android:text="모두"
+            android:textColor="#ffffff"/>
     </LinearLayout>
 
 

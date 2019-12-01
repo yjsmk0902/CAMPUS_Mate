@@ -77,6 +77,9 @@
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
         android:text="로그인"
+        android:textColor="#ffffff"
+        android:background="@drawable/button_background"
+        android:shadowRadius="5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,6 +94,9 @@
         android:layout_marginTop="8dp"
         android:onClick="createUser"
         android:text="회원가입"
+        android:textColor="#ffffff"
+        android:background="@drawable/button_background"
+        android:shadowRadius="5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,10 +108,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="비회원 로그인"
+        android:textColor="#ffffff"
+        android:background="@drawable/button_background"
+        android:shadowRadius="5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button2" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
